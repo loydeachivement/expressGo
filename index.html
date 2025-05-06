@@ -124,6 +124,10 @@
                 <img id="imagePreview" class="image-preview" alt="Aperçu de l'Image">
             </div>
             <div class="form-group">
+                <label for="deliveryAreaStart">Lieu/Zone de départ de la Livraison :</label>
+                <input type="text" id="deliveryAreaStart" required>
+            </div>
+            <div class="form-group">
                 <label for="deliveryArea">Lieu/Zone de Livraison :</label>
                 <input type="text" id="deliveryArea" required>
             </div>
@@ -164,6 +168,7 @@
             event.preventDefault(); // Prevent the default form submission
 
             const itemName = document.getElementById('itemName').value;
+            const deliveryAreaStart = document.getElementById('deliveryAreaStart').value;
             const deliveryArea = document.getElementById('deliveryArea').value;
             const phoneNumber = document.getElementById('phoneNumber').value;
 
@@ -171,7 +176,7 @@
             const receiverWhatsAppNumber = '+24177057911';
 
             // Create the WhatsApp message
-            const message = `Livraison Planifiée !\nArticle : ${itemName}\nZone de Livraison : ${deliveryArea}\nTéléphone : ${phoneNumber}`;
+            const message = `Livraison Planifiée !\nArticle : ${itemName}\nZone de Livraison : ${deliveryAreaStart}\nZone de Livraison : ${deliveryArea}\nTéléphone : ${phoneNumber}`;
             const whatsappLink = `https://wa.me/${receiverWhatsAppNumber}?text=${encodeURIComponent(message)}`;
 
             // Open WhatsApp with the message
