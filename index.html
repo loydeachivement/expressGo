@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ExpressGo</title>
+    <title>Service de Livraison</title>
 
     <!-- Inline CSS -->
     <style>
@@ -22,11 +22,11 @@
             position: relative; /* Allow positioning of logo */
         }
         .logo {
-            max-width: 50px; /* Set a maximum width for the logo */
+            max-width: 150px; /* Set a maximum width for the logo */
             height: auto; /* Maintain aspect ratio */
             position: absolute; /* Position logo at the top left */
-            left: 3px; /* Space from the left */
-            top: 20px; /* Space from the top */
+            left: 20px; /* Space from the left */
+            top: 10px; /* Space from the top */
         }
         .container {
             max-width: 800px;
@@ -113,7 +113,7 @@
 <body>
 
     <header>
-        <img src="img1.jpg" alt="Logo de l'entreprise" class="logo"> <!-- Replace with your logo URL -->
+        <img src="https://your-image-url.com/expressgo-logo.png" alt="Logo de l'entreprise" class="logo"> <!-- Replace with your logo URL -->
         <h1>Service de Livraison</h1>
     </header>
 
@@ -168,13 +168,12 @@
             event.preventDefault(); // Prevent the default form submission
 
             const itemName = document.getElementById('itemName').value;
-            const deliveryAreaStart = document.getElementById('deliveryAreaStart').value;
             const deliveryArea = document.getElementById('deliveryArea').value;
             const phoneNumber = document.getElementById('phoneNumber').value;
 
             // Create the WhatsApp message
-            const message = `Livraison Planifiée !\nArticle : ${itemName}\nZone de Livraison : ${deliveryArea}\nZone de départ de Livraison : ${deliveryAreaStart}\nTéléphone : ${phoneNumber}`;
-            const whatsappLink = `https://wa.me/+24177057911?text=${encodeURIComponent(message)}`;
+            const message = `Livraison Planifiée !\nArticle : ${itemName}\nZone de Livraison : ${deliveryArea}\nTéléphone : ${phoneNumber}`;
+            const whatsappLink = `https://wa.me/+24162145275?text=${encodeURIComponent(message)}`;
 
             // Open WhatsApp with the message
             window.open(whatsappLink, '_blank');
