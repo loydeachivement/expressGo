@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service de Livraison</title>
+
+    <!-- Inline CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            position: relative; /* Allow positioning of logo */
+        }
+        .logo {
+            max-width: 150px; /* Set a maximum width for the logo */
+            height: auto; /* Maintain aspect ratio */
+            position: absolute; /* Position logo at the top left */
+            left: 20px; /* Space from the left */
+            top: 10px; /* Space from the top */
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow-y: auto; /* Enable vertical scrolling */
+            max-height: 90vh; /* Limit the height to 90% of the viewport height */
+            position: relative; /* Position relative for absolute elements */
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group input[type="file"] {
+            padding: 3px;
+        }
+        .image-preview {
+            margin-top: 10px;
+            max-width: 100%;
+            max-height: 200px;
+            display: none; /* Initially hidden */
+        }
+        .submit-button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px; /* Add some space between buttons */
+        }
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+        .call-button {
+            display: flex;
+            align-items: center;
+            background-color: #28a745; /* Green color for call button */
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px; /* Add some space between buttons */
+            text-decoration: none; /* Remove underline from link */
+        }
+        .call-button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+        .icon {
+            margin-right: 8px; /* Space between icon and text */
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #007BFF;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <img src="img1.jpg" alt="Logo de l'entreprise" class="logo"> <!-- Replace with your logo URL -->
+        <h1>Service de Livraison</h1>
+    </header>
+
+    <div class="container">
+        <h2>Planifier une Livraison</h2>
+        <form id="deliveryForm" onsubmit="submitDelivery(event)">
+            <div class="form-group">
+                <label for="itemName">Nom de l'Article :</label>
+                <input type="text" id="itemName" required>
+            </div>
+            <div class="form-group">
+                <label for="itemPhoto">Télécharger la Photo de l'Article :</label>
+                <input type="file" id="itemPhoto" accept="image/*" required onchange="previewImage(event)">
+                <img id="imagePreview" class="image-preview" alt="Aperçu de l'Image">
+            </div>
+            <div class="form-group">
+                <label for="deliveryAreaStart">Lieu/Zone de départ de Livraison :</label>
+                <input type="text" id="deliveryArea" required>
+            </div>
+            <div class="form-group">
+                <label for="deliveryArea">Lieu/Zone de Livraison :</label>
+                <input type="text" id="deliveryArea" required>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Numéro de Téléphone du Destinataire :</label>
+                <input type="tel" id="phoneNumber" required>
+            </div>
+            <button type="submit" class="submit-button">Soumettre la Livraison</button>
+        </form>
+        <a href="tel:+24177057911" class="call-button">
+            <i class="fas fa-phone-alt icon"></i> Appeler pour Assistance: 077057911
+        </a> <!-- Call button with phone icon -->
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Service de Livraison. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Inline JavaScript -->
+    <script>
+        function previewImage(event) {
+            const imagePreview = document.getElementById('imagePreview');
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result; // Set the image source to the uploaded file
+                    imagePreview.style.display = 'block'; // Show the image preview
+                }
+                reader.readAsDataURL(file); // Read the file as a data URL
+            }
+        }
+
+        function submitDelivery(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const itemName = document.getElementById('itemName').value;
+            const deliveryAreaStart = document.getElementById('deliveryAreaStart').value;
+            const deliveryArea = document.getElementById('deliveryArea').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+
+            // Create the WhatsApp message
+            const message = `Livraison Planifiée !\nArticle : ${itemName}\nZone de Livraison : ${deliveryArea}\nZone de départ de Livraison : ${deliveryAreaStart}\nTéléphone : ${phoneNumber}`;
+            const whatsappLink = `https://wa.me/+24162145275?text=${encodeURIComponent(message)}`;
+
+            // Open WhatsApp with the message
+            window.open(whatsappLink, '_blank');
+
+            // Reset the form
+            document.getElementById('deliveryForm').reset();
+            document.getElementById('imagePreview').style.display = 'none'; // Hide the image preview after submission
+        }
+
+        // Adjust scroll position when the keyboard is opened
+        window.addEventListener('resize', function() {
+            if (window.innerHeight < 500) { // Adjust this value based on your design
+                document.querySelector('.container').style.maxHeight = '70vh'; // Reduce height when keyboard is open
+            } else {
+                document.querySelector('.container').style.maxHeight = '90vh'; // Restore height when keyboard is closed
+            }
+        });
+    </script>
+
+</body>
+</html>
