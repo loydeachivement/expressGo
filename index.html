@@ -145,6 +145,7 @@
     </div>
 
     <footer>
+        <p>Akanda: 3000F; Owendo:3000F; Libreville: 2000F </p>
         <p>&copy; 2025/ExpressGO/Service de Livraison.</p>
     </footer>
 
@@ -176,7 +177,7 @@
             const receiverWhatsAppNumber = '+24177057911';
 
             // Create the WhatsApp message
-            const message = `Livraison Planifiée !\nArticle : ${itemName}\nZone de Livraison : ${deliveryAreaStart}\nZone de Livraison : ${deliveryArea}\nTéléphone : ${phoneNumber}`;
+            const message = `Livraison Planifiée !\nArticle : ${itemName}\nZone de départ : ${deliveryAreaStart}\nZone de Livraison : ${deliveryArea}\nTéléphone : ${phoneNumber}`;
             const whatsappLink = `https://wa.me/${receiverWhatsAppNumber}?text=${encodeURIComponent(message)}`;
 
             // Open WhatsApp with the message
